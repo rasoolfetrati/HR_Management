@@ -1,5 +1,7 @@
-﻿using HR_Management.Application.Features.LeaveTypes.Requests.Commands;
+﻿using HR_Management.Application.Execptions;
+using HR_Management.Application.Features.LeaveTypes.Requests.Commands;
 using HR_Management.Application.Persistance.Contracts;
+using HR_Management.Domain;
 using MediatR;
 using System;
 using System.Threading;
@@ -19,7 +21,10 @@ namespace HR_Management.Application.Features.LeaveTypes.Handlers.Commands
         public async Task Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
         {
             var leaveType = await _leaveTypeRepository.Get(request.Id);
+            if (leaveType == null)
+                throw new NotFoundExecption(nameof(LeaveType), request.Id);
             await _leaveTypeRepository.Delete(leaveType);
+
         }
     }
 }

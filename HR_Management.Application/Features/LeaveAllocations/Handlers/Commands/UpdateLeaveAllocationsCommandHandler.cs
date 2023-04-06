@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HR_Management.Application.DTOs.LeaveAllocation.Validators;
+using HR_Management.Application.Execptions;
 using HR_Management.Application.Features.LeaveAllocations.Requests.Commands;
 using HR_Management.Application.Persistance.Contracts;
 using MediatR;
@@ -26,7 +27,7 @@ namespace HR_Management.Application.Features.LeaveAllocations.Handlers.Commands
             var Validator = new UpdateLeaveAllocationDtoValidator(_leaveAllocationRepository);
             var ValidatorResult = await Validator.ValidateAsync(request.LeaveAllocationDto);
             if (ValidatorResult.IsValid is false)
-                throw new Exception();
+                throw new ValidationExecption(ValidatorResult);
 
             var leaveAllocation = await _leaveAllocationRepository.Get(request.LeaveAllocationDto.Id);
             _mapper.Map(request.LeaveAllocationDto, leaveAllocation);
