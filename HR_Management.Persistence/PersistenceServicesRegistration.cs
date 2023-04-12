@@ -1,4 +1,4 @@
-﻿using HR_Management.Application.Persistance.Contracts;
+﻿using HR_Management.Application.Contracts.Persistence;
 using HR_Management.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +11,7 @@ namespace HR_Management.Persistence
 {
     public static class PersistenceServicesRegistration
     {
-        public static IServiceCollection ConfigurePersistenceServicesv(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddDbContext<LeaveManagementDbContext>(options =>
             {
