@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HR_Management.Application.Features.LeaveTypes.Handlers.Commands
 {
-    public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveRequestCommand, int>
+    public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveTypeCommand, int>
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace HR_Management.Application.Features.LeaveTypes.Handlers.Commands
             _leaveTypeRepository = leaveTypeRepository;
             _mapper = mapper;
         }
-        public async Task<int> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateLeaveTypeCommand request, CancellationToken cancellationToken)
         {
             var Validator = new CreateLeaveTypeValidator();
             var ValidatorResult = await Validator.ValidateAsync(request.LeaveTypeDto);
