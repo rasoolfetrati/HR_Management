@@ -1,22 +1,21 @@
 ﻿using AutoMapper;
+using HR_Management.Application.Contracts.Persistence;
 using HR_Management.Application.DTOs.LeaveType.Validators;
 using HR_Management.Application.Execptions;
 using HR_Management.Application.Features.LeaveTypes.Requests.Commands;
-using HR_Management.Application.Contracts.Persistence;
 using HR_Management.Domain;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace HR_Management.Application.Features.LeaveTypes.Handlers.Commands
 {
-    public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveTypeCommand, int>
+    public class CreateLeaveTypeCommandHandler : IRequestHandler<CreateLeaveTypeCommand, int>
     {
         private readonly ILeaveTypeRepository _leaveTypeRepository;
         private readonly IMapper _mapper;
 
-        public CreateLeaveRequestCommandHandler(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
+        public CreateLeaveTypeCommandHandler(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
         {
             _leaveTypeRepository = leaveTypeRepository;
             _mapper = mapper;
