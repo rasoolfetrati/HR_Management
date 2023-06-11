@@ -14,7 +14,7 @@ builder.Services.AddHttpClient<IClient, Client>(c =>
 });
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+builder.Services.AddSingleton<IClient, Client>();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
